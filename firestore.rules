@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Regole per la collezione utenti
+    match /utenti/{userId} {
+      // Gli utenti possono leggere e scrivere solo i propri dati
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Regole per i livelli (solo lettura pubblica)
+    match /livelli/{livelloId} {
+      allow read: if true;
+      allow write: if false;  // Solo admin può scrivere
+    }
+    
+    // Regole per la classifica (lettura pubblica)
+    match /classifica/{documento} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}

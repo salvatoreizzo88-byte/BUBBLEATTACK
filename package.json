@@ -11,7 +11,11 @@
         "ios:run": "npm run build:www && npx cap sync ios && npx cap run ios",
         "android": "npm run build:www && npx cap sync android && npx cap open android",
         "sync": "npm run build:www && npx cap sync",
-        "build": "npm run build:www"
+        "build": "npm run build:www",
+        "firebase:login": "firebase login",
+        "firebase:deploy": "npm run build:www && firebase deploy",
+        "deploy": "npm run firebase:deploy",
+        "deploy:hosting": "npm run build:www && firebase deploy --only hosting"
     },
     "keywords": [
         "game",
@@ -25,10 +29,12 @@
     "license": "MIT",
     "dependencies": {
         "@capacitor/core": "^6.0.0",
-        "@capacitor/ios": "^6.0.0"
+        "@capacitor/ios": "^6.0.0",
+        "firebase": "^12.6.0"
     },
     "devDependencies": {
         "@capacitor/cli": "^6.0.0",
+        "firebase-tools": "^15.0.0",
         "serve": "^14.2.0",
         "typescript": "^5.9.3"
     }
