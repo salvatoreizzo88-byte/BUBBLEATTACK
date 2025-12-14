@@ -1,0 +1,35 @@
+{
+    "name": "bubble-attack",
+    "version": "1.0.0",
+    "description": "BUBBLE ATTACK - Platform 3D con fisica avanzata ispirato a Bubble Bobble",
+    "main": "index.html",
+    "scripts": {
+        "start": "npx serve .",
+        "dev": "npx serve . -l 3000",
+        "build:www": "rm -rf www && mkdir -p www && cp index.html www/ && cp -r src www/ && cp -r data www/ && cp -r assets www/ 2>/dev/null || true",
+        "ios": "npm run build:www && npx cap sync ios && npx cap open ios",
+        "ios:run": "npm run build:www && npx cap sync ios && npx cap run ios",
+        "android": "npm run build:www && npx cap sync android && npx cap open android",
+        "sync": "npm run build:www && npx cap sync",
+        "build": "npm run build:www"
+    },
+    "keywords": [
+        "game",
+        "babylonjs",
+        "3d",
+        "platform",
+        "bubble",
+        "mobile"
+    ],
+    "author": "Salvatore Izzo",
+    "license": "MIT",
+    "dependencies": {
+        "@capacitor/core": "^6.0.0",
+        "@capacitor/ios": "^6.0.0"
+    },
+    "devDependencies": {
+        "@capacitor/cli": "^6.0.0",
+        "serve": "^14.2.0",
+        "typescript": "^5.9.3"
+    }
+}

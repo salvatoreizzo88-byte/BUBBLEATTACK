@@ -1,0 +1,253 @@
+{
+    "gioco": {
+        "nome": "BUBBLE ATTACK",
+        "versione": "1.0.0",
+        "lingua": "it"
+    },
+    "fisica": {
+        "gravitaDefault": [
+            0,
+            -9.81,
+            0
+        ],
+        "stepFisico": 60,
+        "ccdAbilitato": true
+    },
+    "giocatore": {
+        "massa": 80,
+        "velocitaMovimento": 8.0,
+        "forzaSalto": 12.0,
+        "dampingInattivo": 0.9111,
+        "dampingCorsa": 0.0,
+        "gravitaPlanata": 0.2,
+        "forzaSchiantoMeteora": 50
+    },
+    "bolla": {
+        "massa": 0.05,
+        "massaConNemico": 5.0,
+        "gravita": -0.16666,
+        "rimbalzo": 0.9,
+        "smorzamento": 0.8,
+        "raggio": 0.6,
+        "velocitaSparo": 15,
+        "raggioCatena": 1.5,
+        "durataVita": 8,
+        "maxBolle": 30
+    },
+    "camera": {
+        "distanzaDefault": 15,
+        "fovBase": 0.8,
+        "fovMax": 1.0,
+        "traumaDecay": 2.0,
+        "velocitaSogliaFov": 10.0
+    },
+    "biomi": {
+        "1": {
+            "id": "caverna_primordiale",
+            "nome": "Caverna Primordiale",
+            "livelliInizio": 1,
+            "livelliFine": 100,
+            "attrito": 0.5,
+            "rimbalzo": 0.1,
+            "gravitaMod": 1.0,
+            "coloreAmbiente": [
+                0.3,
+                0.25,
+                0.2
+            ],
+            "coloreCielo": [
+                0.1,
+                0.05,
+                0.1
+            ]
+        },
+        "2": {
+            "id": "foresta_fungina",
+            "nome": "Foresta Fungina",
+            "livelliInizio": 101,
+            "livelliFine": 200,
+            "attrito": 1.0,
+            "rimbalzo": 1.5,
+            "gravitaMod": 1.0,
+            "coloreAmbiente": [
+                0.2,
+                0.4,
+                0.3
+            ],
+            "coloreCielo": [
+                0.1,
+                0.2,
+                0.1
+            ]
+        },
+        "3": {
+            "id": "guglia_meccanica",
+            "nome": "Guglia Meccanica",
+            "livelliInizio": 201,
+            "livelliFine": 300,
+            "attrito": 0.5,
+            "rimbalzo": 0.3,
+            "gravitaMod": 1.0,
+            "coloreAmbiente": [
+                0.3,
+                0.3,
+                0.35
+            ],
+            "coloreCielo": [
+                0.15,
+                0.15,
+                0.2
+            ]
+        },
+        "4": {
+            "id": "grotta_cristallo",
+            "nome": "Grotta di Cristallo",
+            "livelliInizio": 301,
+            "livelliFine": 400,
+            "attrito": 0.05,
+            "rimbalzo": 0.2,
+            "gravitaMod": 1.0,
+            "coloreAmbiente": [
+                0.3,
+                0.5,
+                0.6
+            ],
+            "coloreCielo": [
+                0.1,
+                0.2,
+                0.3
+            ]
+        },
+        "5": {
+            "id": "deriva_nebulare",
+            "nome": "Deriva Nebulare",
+            "livelliInizio": 401,
+            "livelliFine": 500,
+            "attrito": 0.3,
+            "rimbalzo": 0.5,
+            "gravitaMod": 0.3,
+            "coloreAmbiente": [
+                0.4,
+                0.3,
+                0.5
+            ],
+            "coloreCielo": [
+                0.05,
+                0.0,
+                0.1
+            ]
+        },
+        "6": {
+            "id": "fonderia_magma",
+            "nome": "Fonderia di Magma",
+            "livelliInizio": 501,
+            "livelliFine": 600,
+            "attrito": 0.8,
+            "rimbalzo": 0.0,
+            "gravitaMod": 1.0,
+            "coloreAmbiente": [
+                0.5,
+                0.2,
+                0.1
+            ],
+            "coloreCielo": [
+                0.3,
+                0.1,
+                0.0
+            ]
+        },
+        "7": {
+            "id": "cyber_grid",
+            "nome": "Cyber-Grid",
+            "livelliInizio": 601,
+            "livelliFine": 700,
+            "attrito": 0.5,
+            "rimbalzo": 0.5,
+            "gravitaMod": -1.0,
+            "coloreAmbiente": [
+                0.0,
+                0.5,
+                0.5
+            ],
+            "coloreCielo": [
+                0.0,
+                0.1,
+                0.15
+            ]
+        },
+        "8": {
+            "id": "il_vuoto",
+            "nome": "Il Vuoto",
+            "livelliInizio": 701,
+            "livelliFine": 800,
+            "attrito": 0.3,
+            "rimbalzo": 0.0,
+            "gravitaMod": 0.5,
+            "coloreAmbiente": [
+                0.1,
+                0.1,
+                0.1
+            ],
+            "coloreCielo": [
+                0.0,
+                0.0,
+                0.02
+            ]
+        },
+        "9": {
+            "id": "palazzo_escher",
+            "nome": "Palazzo di Escher",
+            "livelliInizio": 801,
+            "livelliFine": 900,
+            "attrito": 0.5,
+            "rimbalzo": 0.5,
+            "gravitaMod": 1.0,
+            "coloreAmbiente": [
+                0.35,
+                0.35,
+                0.4
+            ],
+            "coloreCielo": [
+                0.2,
+                0.2,
+                0.25
+            ]
+        },
+        "10": {
+            "id": "picco_drago",
+            "nome": "Picco del Drago",
+            "livelliInizio": 901,
+            "livelliFine": 1000,
+            "attrito": 0.5,
+            "rimbalzo": 0.3,
+            "gravitaMod": 1.0,
+            "coloreAmbiente": [
+                0.5,
+                0.4,
+                0.2
+            ],
+            "coloreCielo": [
+                0.3,
+                0.2,
+                0.1
+            ]
+        }
+    },
+    "audio": {
+        "volumeMusica": 0.8,
+        "volumeEffetti": 0.8,
+        "sogliaImpulsoSuono": 2.0
+    },
+    "mobile": {
+        "scalingHardwareIniziale": 1.5,
+        "scalingHardwareMax": 2.0,
+        "sogliaFpsAdattivo": 55,
+        "durataControlloFps": 3,
+        "maxParticelleFisiche": 50
+    },
+    "debug": {
+        "mostraFps": false,
+        "mostraFisica": false,
+        "mostraRaycast": false
+    }
+}

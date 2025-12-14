@@ -1,0 +1,426 @@
+{
+  "gioco": {
+    "nome": "BUBBLE ATTACK",
+    "sottotitolo": "Il Drago delle Bolle",
+    "versione": "1.0.0"
+  },
+  "messaggi": {
+    "benvenuto": "Benvenuto a BUBBLE ATTACK!",
+    "caricamento": "Caricamento in corso...",
+    "caricamento_havok": "Inizializzazione motore fisico...",
+    "caricamento_assets": "Caricamento risorse...",
+    "caricamento_livello": "Preparazione livello...",
+    "pronto": "Pronto!",
+    "salvataggio": "Salvataggio progressi...",
+    "partita_salvata": "Partita salvata con successo!",
+    "errore_connessione": "Errore di connessione. Riprova.",
+    "errore_caricamento": "Errore durante il caricamento.",
+    "dati_corrotti": "Dati di salvataggio corrotti. Ripristino in corso...",
+    "livello_completato": "LIVELLO COMPLETATO!",
+    "nuovo_record": "NUOVO RECORD!",
+    "game_over": "GAME OVER",
+    "riprova": "Riprova",
+    "continua": "Continua",
+    "ricomincia": "Ricomincia",
+    "pausa": "PAUSA",
+    "riprendi": "Riprendi"
+  },
+  "ui": {
+    "menu_principale": "Menu Principale",
+    "gioca": "GIOCA",
+    "continua_partita": "Continua Partita",
+    "nuova_partita": "Nuova Partita",
+    "opzioni": "Opzioni",
+    "negozio": "Negozio",
+    "collezione": "Collezione",
+    "classifiche": "Classifiche",
+    "esci": "Esci",
+    "indietro": "Indietro",
+    "conferma": "Conferma",
+    "annulla": "Annulla"
+  },
+  "opzioni": {
+    "titolo": "Opzioni",
+    "volume": "Volume",
+    "musica": "Musica",
+    "effetti_sonori": "Effetti Sonori",
+    "vibrazioni": "Vibrazioni",
+    "lingua": "Lingua",
+    "qualita_grafica": "Qualità Grafica",
+    "bassa": "Bassa",
+    "media": "Media",
+    "alta": "Alta",
+    "crediti": "Crediti",
+    "privacy": "Politica Privacy",
+    "termini": "Termini di Servizio"
+  },
+  "tutorial": {
+    "titolo": "Tutorial",
+    "movimento": "Usa il joystick per muovere il drago",
+    "salto": "Tocca SALTA per saltare",
+    "salto_lungo": "Tieni premuto SALTA in aria per planare",
+    "sparo": "Tocca BOLLA per lanciare bolle",
+    "cattura": "Le bolle catturano i nemici!",
+    "scoppio": "Salta sulle bolle per farle scoppiare",
+    "combo": "Scoppia più bolle insieme per un COMBO!",
+    "frutta": "Raccogli la frutta per guadagnare oro",
+    "gravita": "Attenzione! La gravità può cambiare!",
+    "boss": "Ogni Mondo ha un BOSS da sconfiggere",
+    "schianto": "Scorri GIÙ in aria per lo Schianto Meteora!",
+    "prossimo": "Avanti",
+    "salta_tutorial": "Salta Tutorial",
+    "completato": "Tutorial Completato!"
+  },
+  "gameplay": {
+    "vite": "Vite",
+    "punteggio": "Punteggio",
+    "tempo": "Tempo",
+    "livello": "Livello",
+    "bioma": "Bioma",
+    "combo": "COMBO",
+    "fantastico": "FANTASTICO!",
+    "incredibile": "INCREDIBILE!",
+    "perfetto": "PERFETTO!",
+    "sbrigati": "SBRIGATI!",
+    "barone_z": "Il Barone Z si avvicina!"
+  },
+  "valute": {
+    "oro": {
+      "nome": "Monete d'Oro",
+      "simbolo": "🪙"
+    },
+    "gemme": {
+      "nome": "Frammenti Stellari",
+      "simbolo": "💎"
+    }
+  },
+  "negozio": {
+    "titolo": "Negozio",
+    "acquista": "Acquista",
+    "quantita_insufficiente": "Quantità insufficiente!",
+    "acquisto_completato": "Acquisto completato!",
+    "conferma_acquisto": "Confermare l'acquisto?",
+    "pacchetti": {
+      "principiante": {
+        "nome": "Pacchetto Principiante",
+        "descrizione": "500 Gemme + Skin 'Draghetto' + Niente Pubblicità"
+      },
+      "soccorso": {
+        "nome": "Pacchetto Soccorso",
+        "descrizione": "5x Rinascite + 5x Bolle Fulmine"
+      },
+      "esperto_bioma": {
+        "nome": "Esperto del Bioma",
+        "descrizione": "Blueprint arma del bioma + Risorse Livello 2"
+      },
+      "guerriero_weekend": {
+        "nome": "Guerriero del Weekend",
+        "descrizione": "2000 Gemme + Potenziamento XP 24 ore"
+      },
+      "tesoro_reale": {
+        "nome": "Il Tesoro Reale",
+        "descrizione": "15000 Gemme + Skin 'Dio Dorato' + Titolo Esclusivo"
+      }
+    }
+  },
+  "salvadanaio": {
+    "titolo": "Salvadanaio",
+    "pieno": "Il tuo salvadanaio è pieno!",
+    "rompi": "Rompi il Salvadanaio",
+    "contenuto": "Contenuto attuale",
+    "offerta": "Offerta speciale!"
+  },
+  "biomi": {
+    "1": {
+      "nome": "Caverna Primordiale",
+      "descrizione": "Le antiche caverne dove tutto ha inizio"
+    },
+    "2": {
+      "nome": "Foresta Fungina",
+      "descrizione": "Funghi giganti che rimbalzano!"
+    },
+    "3": {
+      "nome": "Guglia Meccanica",
+      "descrizione": "Ingranaggi e piattaforme in movimento"
+    },
+    "4": {
+      "nome": "Grotta di Cristallo",
+      "descrizione": "Superfici scivolose di ghiaccio puro"
+    },
+    "5": {
+      "nome": "Deriva Nebulare",
+      "descrizione": "Galleggia nello spazio a bassa gravità"
+    },
+    "6": {
+      "nome": "Fonderia di Magma",
+      "descrizione": "La lava sale inesorabilmente!"
+    },
+    "7": {
+      "nome": "Cyber-Grid",
+      "descrizione": "Il mondo è capovolto!"
+    },
+    "8": {
+      "nome": "Il Vuoto",
+      "descrizione": "Le piattaforme svaniscono al tocco"
+    },
+    "9": {
+      "nome": "Palazzo di Escher",
+      "descrizione": "Geometrie impossibili"
+    },
+    "10": {
+      "nome": "Picco del Drago",
+      "descrizione": "Affronta tutti i Boss!"
+    }
+  },
+  "nemici": {
+    "zen_robot": {
+      "nome": "Zen-Robot",
+      "descrizione": "Un soldato meccanico che pattuglia le superfici"
+    },
+    "robot_molla": {
+      "nome": "Robot-Molla",
+      "descrizione": "Salta verso di te con precisione letale"
+    },
+    "scarabeo_scudo": {
+      "nome": "Scarabeo-Scudo",
+      "descrizione": "Corazzato frontalmente, attaccalo alle spalle!"
+    },
+    "granchio_magma": {
+      "nome": "Granchio-Magma",
+      "descrizione": "Cammina sulle pareti e lascia scie di lava"
+    },
+    "drone_maita": {
+      "nome": "Drone-Maita",
+      "descrizione": "Mantiene le distanze e spara massi"
+    },
+    "bombardiere_elio": {
+      "nome": "Bombardiere-Elio",
+      "descrizione": "Galleggia sopra di te e sgancia mine"
+    },
+    "razza_nuvola": {
+      "nome": "Razza-Nuvola",
+      "descrizione": "Gigantesca manta elettrica"
+    },
+    "invasore_x": {
+      "nome": "Invasore-X",
+      "descrizione": "Ignora la gravità e spara laser"
+    },
+    "golem_geode": {
+      "nome": "Golem-Geode",
+      "descrizione": "Immune alle bolle normali!"
+    },
+    "vergine_ferro": {
+      "nome": "Vergine di Ferro",
+      "descrizione": "Si apre solo per attaccare"
+    },
+    "strisciante_melma": {
+      "nome": "Strisciante-Melma",
+      "descrizione": "Ti rallenta al contatto"
+    },
+    "forziere_mimo": {
+      "nome": "Forziere-Mimo",
+      "descrizione": "Non è un vero tesoro..."
+    },
+    "sentinella_prisma": {
+      "nome": "Sentinella-Prisma",
+      "descrizione": "Emette laser letali"
+    },
+    "fuoco_buco_nero": {
+      "nome": "Fuoco Buco Nero",
+      "descrizione": "Divora le tue bolle!"
+    },
+    "barone_z": {
+      "nome": "Barone Z",
+      "descrizione": "Il persecutore del tempo"
+    }
+  },
+  "armi": {
+    "bolla_base": {
+      "nome": "Bolla Standard",
+      "descrizione": "La tua bolla di base per catturare i nemici"
+    },
+    "bolla_fulmine": {
+      "nome": "Bolla Fulmine",
+      "descrizione": "Scarica elettrica devastante",
+      "livelli": {
+        "1": "Raggio penetrante",
+        "2": "Fulmini laterali a 45°",
+        "3": "Campo di stasi elettrico"
+      }
+    },
+    "torrente_napalm": {
+      "nome": "Torrente Napalm",
+      "descrizione": "Fluido infuocato che scorre",
+      "livelli": {
+        "1": "20 particelle di fuoco",
+        "2": "40 particelle appiccicose",
+        "3": "Si solidifica in ponti"
+      }
+    },
+    "onda_mareale": {
+      "nome": "Onda Mareale",
+      "descrizione": "Un muro d'acqua che spazza via tutto",
+      "livelli": {
+        "1": "Spinge nemici medi",
+        "2": "Spinge nemici pesanti",
+        "3": "Risacca che attira loot"
+      }
+    },
+    "ancora_gravitazionale": {
+      "nome": "Ancora Gravitazionale",
+      "descrizione": "Manipola la gravità dei nemici",
+      "livelli": {
+        "1": "Nemici volanti precipitano",
+        "2": "Influenza l'ambiente",
+        "3": "Zona a gravità zero"
+      }
+    },
+    "congela_tempo": {
+      "nome": "Congela Tempo",
+      "descrizione": "Rallenta o ferma il tempo",
+      "livelli": {
+        "1": "Nemici al 10% velocità",
+        "2": "Nemici completamente fermi",
+        "3": "Danno accumulato"
+      }
+    },
+    "vuoto_singolarita": {
+      "nome": "Vuoto Singolarità",
+      "descrizione": "Un mini buco nero",
+      "livelli": {
+        "1": "Attrae nemici leggeri",
+        "2": "Curva i proiettili",
+        "3": "Distrugge nemici non-boss"
+      }
+    },
+    "dardo_elio": {
+      "nome": "Dardo Elio",
+      "descrizione": "Solleva i nemici in aria",
+      "livelli": {
+        "1": "Solleva 1 nemico",
+        "2": "3 dardi a ventaglio",
+        "3": "Solleva oggetti pesanti"
+      }
+    },
+    "trivella_perforante": {
+      "nome": "Trivella Perforante",
+      "descrizione": "Perfora muri e scudi",
+      "livelli": {
+        "1": "Rompe scudi",
+        "2": "Scava per 3 secondi",
+        "3": "Onde sismiche"
+      }
+    },
+    "cometa_rimbalzante": {
+      "nome": "Cometa Rimbalzante",
+      "descrizione": "Rimbalza e accelera",
+      "livelli": {
+        "1": "5 rimbalzi accelerati",
+        "2": "Mira assistita",
+        "3": "Si divide in 2"
+      }
+    }
+  },
+  "equipaggiamento": {
+    "scarpe_alate": {
+      "nome": "Scarpe Alate",
+      "descrizione": "Aumenta velocità e mobilità",
+      "livelli": {
+        "1": "+20% Velocità",
+        "2": "Salto nel vuoto (0.2s)",
+        "3": "Doppio Salto"
+      }
+    },
+    "anello_soffio": {
+      "nome": "Anello del Soffio",
+      "descrizione": "Potenzia le tue bolle",
+      "livelli": {
+        "1": "-30% Ricarica",
+        "2": "Sparo automatico",
+        "3": "Scudo di bolle"
+      }
+    },
+    "occhiali_spettrali": {
+      "nome": "Occhiali Spettrali",
+      "descrizione": "Vedi oltre il visibile",
+      "livelli": {
+        "1": "Piattaforme fantasma visibili",
+        "2": "Punti deboli evidenziati",
+        "3": "Visione a raggi X"
+      }
+    },
+    "coda_pesante": {
+      "nome": "Coda Pesante",
+      "descrizione": "Schianto Meteora potenziato",
+      "livelli": {
+        "1": "Schianto distruttivo",
+        "2": "Onda d'urto",
+        "3": "Invincibilità durante la caduta"
+      }
+    },
+    "scaglie_magnetiche": {
+      "nome": "Scaglie Magnetiche",
+      "descrizione": "Attrai oggetti e risorse",
+      "livelli": {
+        "1": "Attira loot (raggio 5)",
+        "2": "Attira XP (raggio doppio)",
+        "3": "5% probabilità cura"
+      }
+    },
+    "prisma_bolle": {
+      "nome": "Prisma di Bolle",
+      "descrizione": "Bolle più resistenti",
+      "livelli": {
+        "1": "Bolle durano 10s",
+        "2": "+1 HP per bolla",
+        "3": "Rifrazione laser"
+      }
+    }
+  },
+  "boss": {
+    "colosso_rotolante": {
+      "nome": "Il Colosso Rotolante",
+      "descrizione": "Una sfera di pietra vivente",
+      "suggerimento": "Usa il Napalm per farlo scivolare!"
+    },
+    "matriarca_spore": {
+      "nome": "La Matriarca delle Spore",
+      "descrizione": "Una massa gelatinosa gigante",
+      "suggerimento": "Usa i trampolini per lo Schianto Meteora!"
+    },
+    "ragno_meccanico": {
+      "nome": "Il Ragno Meccanico",
+      "descrizione": "Sospeso su catene fisiche",
+      "suggerimento": "Taglia le catene che lo sostengono!"
+    },
+    "leviatano_prisma": {
+      "nome": "Il Leviatano Prisma",
+      "descrizione": "Un serpente di cristallo sul ghiaccio",
+      "suggerimento": "Pattina lateralmente per colpire la coda!"
+    },
+    "anguilla_astrale": {
+      "nome": "L'Anguilla Astrale",
+      "descrizione": "Nuota nell'aria dello spazio",
+      "suggerimento": "Combattimento aereo a gravità zero!"
+    }
+  },
+  "stati_giocatore": {
+    "inattivo": "Inattivo",
+    "corsa": "In Corsa",
+    "salto": "In Salto",
+    "planata": "Planata",
+    "caduta": "In Caduta",
+    "schianto_meteora": "Schianto Meteora!",
+    "derapata": "Derapata",
+    "a_terra": "A Terra",
+    "in_aria": "In Aria"
+  },
+  "errori": {
+    "generico": "Si è verificato un errore.",
+    "rete": "Errore di rete. Controlla la connessione.",
+    "salvataggio_fallito": "Impossibile salvare i progressi.",
+    "caricamento_fallito": "Impossibile caricare i dati.",
+    "acquisto_fallito": "Acquisto non riuscito. Riprova.",
+    "livello_non_trovato": "Livello non trovato."
+  }
+}

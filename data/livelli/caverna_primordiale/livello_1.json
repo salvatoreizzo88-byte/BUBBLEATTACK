@@ -1,0 +1,256 @@
+{
+    "numero": 1,
+    "bioma": "caverna_primordiale",
+    "nome": "Inizio dell'Avventura",
+    "difficolta": 1,
+    "descrizione": "Impara le basi del movimento e dello sparo di bolle",
+    "gravitaIniziale": {
+        "x": 0,
+        "y": -9.81,
+        "z": 0
+    },
+    "ambiente": {
+        "coloreCielo": [
+            0.1,
+            0.05,
+            0.1
+        ],
+        "nebbia": {
+            "densita": 0.008,
+            "colore": [
+                0.1,
+                0.05,
+                0.1
+            ]
+        },
+        "lucaAmbiente": {
+            "intensita": 0.7
+        }
+    },
+    "elementi": [
+        {
+            "tipo": "spawn_giocatore",
+            "posizione": {
+                "x": 0,
+                "y": 2,
+                "z": 0
+            }
+        },
+        {
+            "tipo": "piattaforma",
+            "posizione": {
+                "x": 0,
+                "y": -1,
+                "z": 0
+            },
+            "dimensioni": {
+                "x": 40,
+                "y": 2,
+                "z": 40
+            },
+            "materiale": "standard"
+        },
+        {
+            "tipo": "piattaforma",
+            "posizione": {
+                "x": 8,
+                "y": 2,
+                "z": 0
+            },
+            "dimensioni": {
+                "x": 5,
+                "y": 0.5,
+                "z": 5
+            }
+        },
+        {
+            "tipo": "piattaforma",
+            "posizione": {
+                "x": 8,
+                "y": 5,
+                "z": 8
+            },
+            "dimensioni": {
+                "x": 5,
+                "y": 0.5,
+                "z": 5
+            }
+        },
+        {
+            "tipo": "trampolino",
+            "posizione": {
+                "x": -5,
+                "y": 0.5,
+                "z": 0
+            },
+            "dimensioni": {
+                "x": 3,
+                "y": 1,
+                "z": 3
+            },
+            "forza": 25
+        },
+        {
+            "tipo": "piattaforma",
+            "posizione": {
+                "x": -5,
+                "y": 8,
+                "z": 0
+            },
+            "dimensioni": {
+                "x": 6,
+                "y": 0.5,
+                "z": 6
+            }
+        },
+        {
+            "tipo": "piattaforma",
+            "posizione": {
+                "x": 0,
+                "y": 12,
+                "z": 5
+            },
+            "dimensioni": {
+                "x": 8,
+                "y": 0.5,
+                "z": 8
+            }
+        },
+        {
+            "tipo": "collezionabile",
+            "posizione": {
+                "x": 8,
+                "y": 3,
+                "z": 0
+            },
+            "tipoCollezionabile": "moneta",
+            "valore": 10
+        },
+        {
+            "tipo": "collezionabile",
+            "posizione": {
+                "x": 8,
+                "y": 6,
+                "z": 8
+            },
+            "tipoCollezionabile": "moneta",
+            "valore": 10
+        },
+        {
+            "tipo": "collezionabile",
+            "posizione": {
+                "x": -5,
+                "y": 9,
+                "z": 0
+            },
+            "tipoCollezionabile": "gemma",
+            "valore": 1
+        },
+        {
+            "tipo": "checkpoint",
+            "posizione": {
+                "x": -5,
+                "y": 9,
+                "z": 0
+            },
+            "dimensioni": {
+                "x": 4,
+                "y": 3,
+                "z": 4
+            },
+            "id": "checkpoint_1"
+        },
+        {
+            "tipo": "spawn_nemico",
+            "posizione": {
+                "x": 8,
+                "y": 3,
+                "z": 8
+            },
+            "tipoNemico": "ZenRobot",
+            "opzioni": {
+                "pattuglia": true,
+                "rangoPatuglia": 5
+            }
+        },
+        {
+            "tipo": "zona_vittoria",
+            "posizione": {
+                "x": 0,
+                "y": 13,
+                "z": 5
+            },
+            "dimensioni": {
+                "x": 6,
+                "y": 4,
+                "z": 6
+            },
+            "prossimoLivello": 2
+        },
+        {
+            "tipo": "zona_morte",
+            "posizione": {
+                "x": 0,
+                "y": -15,
+                "z": 0
+            },
+            "dimensioni": {
+                "x": 100,
+                "y": 2,
+                "z": 100
+            }
+        },
+        {
+            "tipo": "muro",
+            "posizione": {
+                "x": 22,
+                "y": 5,
+                "z": 0
+            },
+            "dimensioni": {
+                "x": 1,
+                "y": 12,
+                "z": 45
+            }
+        },
+        {
+            "tipo": "muro",
+            "posizione": {
+                "x": -22,
+                "y": 5,
+                "z": 0
+            },
+            "dimensioni": {
+                "x": 1,
+                "y": 12,
+                "z": 45
+            }
+        },
+        {
+            "tipo": "muro",
+            "posizione": {
+                "x": 0,
+                "y": 5,
+                "z": 22
+            },
+            "dimensioni": {
+                "x": 45,
+                "y": 12,
+                "z": 1
+            }
+        },
+        {
+            "tipo": "muro",
+            "posizione": {
+                "x": 0,
+                "y": 5,
+                "z": -22
+            },
+            "dimensioni": {
+                "x": 45,
+                "y": 12,
+                "z": 1
+            }
+        }
+    ]
+}

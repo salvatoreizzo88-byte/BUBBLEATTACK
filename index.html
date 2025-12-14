@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description"
+        content="BUBBLE ATTACK - Un platform 3D con fisica avanzata dove un drago spara bolle per catturare nemici!">
+    <meta name="theme-color" content="#4a148c">
+    <title>BUBBLE ATTACK - Il Drago delle Bolle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #1a0033 0%, #4a148c 50%, #7c43bd 100%);
+        }
+
+        #renderCanvas {
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+            display: block;
+        }
+
+        #schermataCaricamento {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a0033 0%, #4a148c 50%, #7c43bd 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
+        }
+
+        #schermataCaricamento.nascosto {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .titolo-gioco {
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: 800;
+            color: #fff;
+            text-shadow:
+                0 0 10px rgba(255, 255, 255, 0.5),
+                0 0 20px rgba(124, 67, 189, 0.8),
+                0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+            animation: pulsaTitolo 2s ease-in-out infinite;
+        }
+
+        @keyframes pulsaTitolo {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .contenitore-caricamento {
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .barra-progresso {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progresso-interno {
+            height: 100%;
+            background: linear-gradient(90deg, #00e5ff, #76ff03);
+            width: 0%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+        }
+
+        .testo-caricamento {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        /* HUD */
+        #hud {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            display: none;
+            justify-content: space-between;
+            align-items: flex-start;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        #hud.visibile {
+            display: flex;
+        }
+
+        .pannello-hud {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            color: white;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .icona-valuta {
+            font-size: 1.2rem;
+        }
+
+        /* Controlli Touch */
+        #controlliTouch {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            display: none;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 2rem;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        #controlliTouch.visibile {
+            display: flex;
+        }
+
+        .zona-joystick {
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            position: relative;
+            pointer-events: auto;
+        }
+
+        .pomello-joystick {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%, #ffffff, #a0a0a0);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .zona-pulsanti {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: flex-end;
+        }
+
+        .pulsante-azione {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            pointer-events: auto;
+            transition: transform 0.1s, box-shadow 0.1s;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .pulsante-azione:active {
+            transform: scale(0.9);
+        }
+
+        #pulsanteSalto {
+            background: linear-gradient(135deg, #00e5ff, #00b0ff);
+            box-shadow: 0 4px 20px rgba(0, 229, 255, 0.5);
+        }
+
+        #pulsanteSparo {
+            background: linear-gradient(135deg, #ff4081, #f50057);
+            box-shadow: 0 4px 20px rgba(255, 64, 129, 0.5);
+            width: 70px;
+            height: 70px;
+        }
+
+        /* Messaggi di Gioco */
+        #messaggioGioco {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: clamp(1.5rem, 5vw, 3rem);
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 200;
+            text-align: center;
+            transition: opacity 0.3s ease;
+        }
+
+        #messaggioGioco.visibile {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Canvas di Rendering -->
+    <canvas id="renderCanvas"></canvas>
+
+    <!-- Schermata di Caricamento -->
+    <div id="schermataCaricamento">
+        <h1 class="titolo-gioco">🐉 BUBBLE ATTACK</h1>
+        <div class="contenitore-caricamento">
+            <div class="barra-progresso">
+                <div class="progresso-interno" id="barraProgresso"></div>
+            </div>
+            <p class="testo-caricamento" id="testoCaricamento">Caricamento in corso...</p>
+        </div>
+    </div>
+
+    <!-- HUD -->
+    <div id="hud">
+        <div class="pannello-hud">
+            <span class="icona-valuta">🪙</span>
+            <span id="contatorOro">0</span>
+        </div>
+        <div class="pannello-hud">
+            <span class="icona-valuta">💎</span>
+            <span id="contatoreGemme">0</span>
+        </div>
+    </div>
+
+    <!-- Controlli Touch -->
+    <div id="controlliTouch">
+        <div class="zona-joystick" id="zonaJoystick">
+            <div class="pomello-joystick" id="pomelloJoystick"></div>
+        </div>
+        <div class="zona-pulsanti">
+            <button class="pulsante-azione" id="pulsanteSparo">BOLLA</button>
+            <button class="pulsante-azione" id="pulsanteSalto">SALTA</button>
+        </div>
+    </div>
+
+    <!-- Messaggio di Gioco -->
+    <div id="messaggioGioco"></div>
+
+    <!-- Babylon.js e Havok -->
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/havok/HavokPhysics_umd.js"></script>
+    <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
+
+    <!-- Gioco Inline (senza moduli per massima compatibilità) -->
+    <script>
+        // ========================================
+        // BUBBLE ATTACK - Versione Integrata
+        // ========================================
+
+        const canvas = document.getElementById('renderCanvas');
+        const schermataCaricamento = document.getElementById('schermataCaricamento');
+        const barraProgresso = document.getElementById('barraProgresso');
+        const testoCaricamento = document.getElementById('testoCaricamento');
+
+        // Stringhe italiane
+        const STRINGHE = {
+            caricamento_havok: 'Inizializzazione motore fisico...',
+            caricamento_livello: 'Preparazione livello...',
+            caricamento_assets: 'Caricamento risorse...',
+            pronto: 'Pronto!',
+            benvenuto: '🐉 BUBBLE ATTACK!'
+        };
+
+        // Stati del drago
+        const StatiDrago = {
+            INATTIVO: 'INATTIVO',
+            CORSA: 'CORSA',
+            SALTO: 'SALTO',
+            PLANATA: 'PLANATA',
+            CADUTA: 'CADUTA',
+            SCHIANTO_METEORA: 'SCHIANTO_METEORA'
+        };
+
+        // Variabili globali
+        let engine, scene, camera, drago, aggregatoDrago;
+        let gravitaCorrente = new BABYLON.Vector3(0, -9.81, 0);
+        let statoCorrente = StatiDrago.INATTIVO;
+        let aTerra = false;
+        let oro = 0, gemme = 0;
+        let bolleAttive = [];
+
+        // Input
+        let inputX = 0, inputY = 0;
+        let saltoInput = false, sparoInput = false, giuInput = false;
+        let timerCooldownSparo = 0;
+
+        // Parametri
+        const PARAM = {
+            velocitaMovimento: 8.0,
+            forzaSalto: 12.0,
+            dampingInattivo: 0.9,
+            gravitaPlanata: 0.2,
+            forzaSchiantoMeteora: 50,
+            massa: 80,
+            // Bolla
+            bollaRaggio: 0.6,
+            bollaVelocita: 15,
+            bollaAntigravita: -0.16666,
+            bollaRimbalzo: 0.9,
+            bollaSmorzamento: 0.8,
+            bollaDurata: 8,
+            maxBolle: 30,
+            cooldownSparo: 0.2
+        };
+
+        // ========================================
+        // Funzioni di utilità
+        // ========================================
+
+        function aggiornaProgresso(percentuale, messaggio) {
+            barraProgresso.style.width = `${percentuale}%`;
+            testoCaricamento.textContent = messaggio;
+        }
+
+        function nascondiCaricamento() {
+            schermataCaricamento.classList.add('nascosto');
+            document.getElementById('hud').classList.add('visibile');
+            document.getElementById('controlliTouch').classList.add('visibile');
+        }
+
+        function mostraMessaggio(testo, durata = 2000) {
+            const msg = document.getElementById('messaggioGioco');
+            msg.textContent = testo;
+            msg.classList.add('visibile');
+            setTimeout(() => msg.classList.remove('visibile'), durata);
+        }
+
+        // ========================================
+        // Inizializzazione
+        // ========================================
+
+        async function inizializza() {
+            try {
+                aggiornaProgresso(10, STRINGHE.caricamento_havok);
+
+                // Crea engine
+                engine = new BABYLON.Engine(canvas, true, {
+                    preserveDrawingBuffer: true,
+                    stencil: true,
+                    antialias: true
+                });
+
+                window.addEventListener('resize', () => engine.resize());
+
+                aggiornaProgresso(25, STRINGHE.caricamento_havok);
+
+                // Inizializza Havok
+                const havok = await HavokPhysics();
+                const havokPlugin = new BABYLON.HavokPlugin(true, havok);
+
+                aggiornaProgresso(40, STRINGHE.caricamento_livello);
+
+                // Crea scena
+                scene = new BABYLON.Scene(engine);
+                scene.enablePhysics(gravitaCorrente, havokPlugin);
+                scene.clearColor = new BABYLON.Color4(0.1, 0, 0.2, 1);
+
+                // Camera
+                camera = new BABYLON.ArcRotateCamera(
+                    'camera', Math.PI / 2, Math.PI / 3, 15,
+                    BABYLON.Vector3.Zero(), scene
+                );
+                camera.lowerBetaLimit = 0.3;
+                camera.upperBetaLimit = Math.PI / 2 - 0.1;
+                camera.lowerRadiusLimit = 8;
+                camera.upperRadiusLimit = 25;
+
+                // Luci
+                const luceAmbiente = new BABYLON.HemisphericLight(
+                    'luceAmbiente', new BABYLON.Vector3(0, 1, 0), scene
+                );
+                luceAmbiente.intensity = 0.7;
+
+                const luceSole = new BABYLON.DirectionalLight(
+                    'luceSole', new BABYLON.Vector3(-1, -2, -1), scene
+                );
+                luceSole.intensity = 0.8;
+
+                aggiornaProgresso(60, STRINGHE.caricamento_assets);
+
+                // Crea mondo
+                creaLivello();
+
+                aggiornaProgresso(80, STRINGHE.caricamento_assets);
+
+                // Crea drago
+                creaDrago();
+
+                // Setup input
+                setupInput();
+
+                aggiornaProgresso(95, STRINGHE.pronto);
+
+                // Avvia
+                setTimeout(() => {
+                    aggiornaProgresso(100, STRINGHE.pronto);
+                    setTimeout(() => {
+                        nascondiCaricamento();
+                        mostraMessaggio(STRINGHE.benvenuto);
+                        avviaLoop();
+                    }, 500);
+                }, 500);
+
+            } catch (err) {
+                console.error('Errore inizializzazione:', err);
+                testoCaricamento.textContent = 'Errore: ' + err.message;
+                testoCaricamento.style.color = '#ff5252';
+            }
+        }
+
+        // ========================================
+        // Creazione mondo
+        // ========================================
+
+        function creaLivello() {
+            // Pavimento
+            const pavimento = BABYLON.MeshBuilder.CreateBox(
+                'pavimento', { width: 50, height: 2, depth: 50 }, scene
+            );
+            pavimento.position.y = -1;
+
+            const matPavimento = new BABYLON.StandardMaterial('matPav', scene);
+            matPavimento.diffuseColor = new BABYLON.Color3(0.3, 0.25, 0.2);
+            matPavimento.specularColor = new BABYLON.Color3(0.1, 0.1, 0.1);
+            pavimento.material = matPavimento;
+
+            new BABYLON.PhysicsAggregate(
+                pavimento, BABYLON.PhysicsShapeType.BOX,
+                { mass: 0, friction: 0.5, restitution: 0.1 }, scene
+            );
+
+            // Piattaforme
+            const piattaforme = [
+                { x: 5, y: 2, z: 0 },
+                { x: 10, y: 4, z: 3 },
+                { x: -5, y: 3, z: 5 },
+                { x: 0, y: 6, z: 8 }
+            ];
+
+            const matPiatt = new BABYLON.StandardMaterial('matPiatt', scene);
+            matPiatt.diffuseColor = new BABYLON.Color3(0.4, 0.3, 0.5);
+
+            piattaforme.forEach((p, i) => {
+                const piatt = BABYLON.MeshBuilder.CreateBox(
+                    `piatt_${i}`, { width: 4, height: 0.5, depth: 4 }, scene
+                );
+                piatt.position = new BABYLON.Vector3(p.x, p.y, p.z);
+                piatt.material = matPiatt;
+
+                new BABYLON.PhysicsAggregate(
+                    piatt, BABYLON.PhysicsShapeType.BOX,
+                    { mass: 0, friction: 0.5, restitution: 0.1 }, scene
+                );
+            });
+        }
+
+        // ========================================
+        // Creazione drago
+        // ========================================
+
+        function creaDrago() {
+            drago = BABYLON.MeshBuilder.CreateCapsule(
+                'drago', { height: 2.0, radius: 0.5 }, scene
+            );
+            drago.position = new BABYLON.Vector3(0, 3, 0);
+
+            const matDrago = new BABYLON.StandardMaterial('matDrago', scene);
+            matDrago.diffuseColor = new BABYLON.Color3(0.6, 0.3, 0.8);
+            matDrago.specularColor = new BABYLON.Color3(0.8, 0.8, 1);
+            matDrago.emissiveColor = new BABYLON.Color3(0.1, 0.05, 0.15);
+            drago.material = matDrago;
+
+            drago.rotationQuaternion = BABYLON.Quaternion.Identity();
+
+            aggregatoDrago = new BABYLON.PhysicsAggregate(
+                drago, BABYLON.PhysicsShapeType.CAPSULE,
+                { mass: PARAM.massa, friction: 0, restitution: 0 }, scene
+            );
+
+            aggregatoDrago.body.setAngularDamping(100);
+
+            camera.lockedTarget = drago;
+
+            console.log('🐉 Drago creato!');
+        }
+
+        // ========================================
+        // Input
+        // ========================================
+
+        function setupInput() {
+            // Tastiera
+            window.addEventListener('keydown', (e) => {
+                switch (e.code) {
+                    case 'KeyW': case 'ArrowUp': inputY = 1; break;
+                    case 'KeyS': case 'ArrowDown': inputY = -1; giuInput = true; break;
+                    case 'KeyA': case 'ArrowLeft': inputX = -1; break;
+                    case 'KeyD': case 'ArrowRight': inputX = 1; break;
+                    case 'Space': saltoInput = true; break;
+                    case 'KeyJ': case 'KeyZ': sparoInput = true; break;
+                }
+            });
+
+            window.addEventListener('keyup', (e) => {
+                switch (e.code) {
+                    case 'KeyW': case 'ArrowUp': if (inputY > 0) inputY = 0; break;
+                    case 'KeyS': case 'ArrowDown': if (inputY < 0) inputY = 0; giuInput = false; break;
+                    case 'KeyA': case 'ArrowLeft': if (inputX < 0) inputX = 0; break;
+                    case 'KeyD': case 'ArrowRight': if (inputX > 0) inputX = 0; break;
+                    case 'Space': saltoInput = false; break;
+                    case 'KeyJ': case 'KeyZ': sparoInput = false; break;
+                }
+            });
+
+            // Joystick touch
+            const zona = document.getElementById('zonaJoystick');
+            const pomello = document.getElementById('pomelloJoystick');
+            let joystickAttivo = false, joystickId = null;
+            let jCentroX = 0, jCentroY = 0;
+
+            zona.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                const t = e.changedTouches[0];
+                joystickAttivo = true;
+                joystickId = t.identifier;
+                jCentroX = t.clientX;
+                jCentroY = t.clientY;
+            }, { passive: false });
+
+            zona.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                if (!joystickAttivo) return;
+                for (let t of e.changedTouches) {
+                    if (t.identifier === joystickId) {
+                        let dx = t.clientX - jCentroX;
+                        let dy = t.clientY - jCentroY;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        const max = 60;
+                        if (dist > max) {
+                            dx = (dx / dist) * max;
+                            dy = (dy / dist) * max;
+                        }
+                        inputX = dx / max;
+                        inputY = -dy / max;
+                        giuInput = inputY < -0.7;
+                        pomello.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
+                    }
+                }
+            }, { passive: false });
+
+            zona.addEventListener('touchend', (e) => {
+                for (let t of e.changedTouches) {
+                    if (t.identifier === joystickId) {
+                        joystickAttivo = false;
+                        inputX = 0;
+                        inputY = 0;
+                        giuInput = false;
+                        pomello.style.transform = 'translate(-50%, -50%)';
+                    }
+                }
+            });
+
+            // Pulsanti
+            document.getElementById('pulsanteSalto').addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                saltoInput = true;
+            }, { passive: false });
+            document.getElementById('pulsanteSalto').addEventListener('touchend', () => saltoInput = false);
+
+            document.getElementById('pulsanteSparo').addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                sparoInput = true;
+            }, { passive: false });
+            document.getElementById('pulsanteSparo').addEventListener('touchend', () => sparoInput = false);
+        }
+
+        // ========================================
+        // Game Loop
+        // ========================================
+
+        function avviaLoop() {
+            let saltoPremuto = false;
+            let timerDopoSalto = 0;
+
+            scene.onBeforeRenderObservable.add(() => {
+                const dt = engine.getDeltaTime() / 1000;
+                const corpo = aggregatoDrago.body;
+                const vel = corpo.getLinearVelocity();
+
+                // Timer
+                if (timerDopoSalto > 0) timerDopoSalto -= dt;
+                if (timerCooldownSparo > 0) timerCooldownSparo -= dt;
+
+                // Ground check
+                if (timerDopoSalto <= 0) {
+                    const ray = new BABYLON.Ray(drago.position, new BABYLON.Vector3(0, -1, 0), 1.2);
+                    const hit = scene.pickWithRay(ray, (m) => m !== drago && m.isPickable);
+                    aTerra = hit && hit.hit;
+                } else {
+                    aTerra = false;
+                }
+
+                // ---- FSM ----
+                const inputMag = Math.sqrt(inputX * inputX + inputY * inputY);
+
+                // Schianto Meteora
+                if (!aTerra && giuInput && saltoInput && statoCorrente !== StatiDrago.SCHIANTO_METEORA) {
+                    statoCorrente = StatiDrago.SCHIANTO_METEORA;
+                    corpo.setLinearVelocity(new BABYLON.Vector3(0, vel.y, 0));
+                    corpo.applyImpulse(new BABYLON.Vector3(0, -PARAM.forzaSchiantoMeteora, 0), drago.position);
+                    console.log('☄️ Schianto Meteora!');
+                }
+
+                if (statoCorrente === StatiDrago.SCHIANTO_METEORA) {
+                    corpo.setLinearDamping(0);
+                    if (aTerra) {
+                        console.log('💥 Impatto!');
+                        statoCorrente = StatiDrago.INATTIVO;
+                    }
+                } else if (aTerra) {
+                    // Salto
+                    if (saltoInput && !saltoPremuto) {
+                        corpo.applyImpulse(new BABYLON.Vector3(0, PARAM.forzaSalto, 0), drago.position);
+                        timerDopoSalto = 0.1;
+                        statoCorrente = StatiDrago.SALTO;
+                        console.log('🦘 Salto!');
+                    } else if (inputMag > 0.1) {
+                        statoCorrente = StatiDrago.CORSA;
+                        corpo.setLinearDamping(0);
+                        applicaMovimento(0.8);
+                    } else {
+                        statoCorrente = StatiDrago.INATTIVO;
+                        corpo.setLinearDamping(PARAM.dampingInattivo);
+                    }
+                } else {
+                    // In aria
+                    if (vel.y < 0 && saltoInput) {
+                        statoCorrente = StatiDrago.PLANATA;
+                        // Antigravità parziale
+                        corpo.applyForce(new BABYLON.Vector3(0, PARAM.massa * 9.81 * 0.8, 0), drago.position);
+                        applicaMovimento(0.5);
+                    } else {
+                        statoCorrente = vel.y > 0 ? StatiDrago.SALTO : StatiDrago.CADUTA;
+                        applicaMovimento(0.3);
+                    }
+                    corpo.setLinearDamping(0);
+                }
+
+                saltoPremuto = saltoInput;
+
+                // Rotazione drago
+                if (inputMag > 0.1) {
+                    const dir = convertiInputCamera();
+                    if (dir.length() > 0.1) {
+                        const angolo = Math.atan2(dir.x, dir.z);
+                        const quatTarget = BABYLON.Quaternion.RotationAxis(BABYLON.Vector3.Up(), angolo);
+                        drago.rotationQuaternion = BABYLON.Quaternion.Slerp(
+                            drago.rotationQuaternion, quatTarget, 0.15
+                        );
+                    }
+                }
+
+                // Sparo
+                if (sparoInput && timerCooldownSparo <= 0) {
+                    sparaBolla();
+                    timerCooldownSparo = PARAM.cooldownSparo;
+                }
+
+                // Update bolle
+                aggiornaBollle(dt);
+
+                // HUD
+                document.getElementById('contatorOro').textContent = oro;
+                document.getElementById('contatoreGemme').textContent = gemme;
+            });
+
+            engine.runRenderLoop(() => scene.render());
+            console.log('🎮 Game loop avviato!');
+        }
+
+        function applicaMovimento(moltiplicatore) {
+            const corpo = aggregatoDrago.body;
+            const dir = convertiInputCamera();
+            if (dir.length() < 0.1) return;
+
+            dir.normalize();
+            dir.scaleInPlace(PARAM.velocitaMovimento * moltiplicatore * 100);
+            corpo.applyForce(new BABYLON.Vector3(dir.x, 0, dir.z), drago.position);
+        }
+
+        function convertiInputCamera() {
+            if (Math.abs(inputX) < 0.01 && Math.abs(inputY) < 0.01) {
+                return new BABYLON.Vector3(0, 0, 0);
+            }
+            const camForward = camera.getForwardRay().direction;
+            const forward = new BABYLON.Vector3(camForward.x, 0, camForward.z).normalize();
+            const right = BABYLON.Vector3.Cross(BABYLON.Vector3.Up(), forward).normalize();
+            return new BABYLON.Vector3(
+                right.x * inputX + forward.x * inputY,
+                0,
+                right.z * inputX + forward.z * inputY
+            );
+        }
+
+        // ========================================
+        // Bolle
+        // ========================================
+
+        const matBolla = null;
+
+        function sparaBolla() {
+            if (bolleAttive.length >= PARAM.maxBolle) {
+                const vecchia = bolleAttive.shift();
+                vecchia.aggregato.dispose();
+                vecchia.mesh.dispose();
+            }
+
+            const forward = new BABYLON.Vector3(0, 0, 1).rotateByQuaternionToRef(
+                drago.rotationQuaternion, new BABYLON.Vector3()
+            );
+            const spawn = drago.position.add(forward.scale(1.5)).add(new BABYLON.Vector3(0, 0.5, 0));
+
+            const mesh = BABYLON.MeshBuilder.CreateSphere(
+                `bolla_${Date.now()}`, { diameter: PARAM.bollaRaggio * 2, segments: 12 }, scene
+            );
+            mesh.position = spawn;
+
+            if (!window.matBolla) {
+                window.matBolla = new BABYLON.StandardMaterial('matBolla', scene);
+                window.matBolla.diffuseColor = new BABYLON.Color3(0.5, 0.8, 1);
+                window.matBolla.specularColor = new BABYLON.Color3(1, 1, 1);
+                window.matBolla.emissiveColor = new BABYLON.Color3(0.1, 0.2, 0.3);
+                window.matBolla.alpha = 0.7;
+            }
+            mesh.material = window.matBolla;
+
+            const aggregato = new BABYLON.PhysicsAggregate(
+                mesh, BABYLON.PhysicsShapeType.SPHERE,
+                { mass: 0.05, friction: 0, restitution: PARAM.bollaRimbalzo }, scene
+            );
+            aggregato.body.setLinearDamping(PARAM.bollaSmorzamento);
+            aggregato.body.setLinearVelocity(forward.scale(PARAM.bollaVelocita));
+
+            bolleAttive.push({
+                mesh: mesh,
+                aggregato: aggregato,
+                timer: PARAM.bollaDurata
+            });
+
+            // Rinculo
+            if (!aTerra) {
+                aggregatoDrago.body.applyImpulse(forward.scale(-0.5), drago.position);
+            }
+
+            console.log('🫧 Bolla!');
+        }
+
+        function aggiornaBollle(dt) {
+            for (let i = bolleAttive.length - 1; i >= 0; i--) {
+                const b = bolleAttive[i];
+                b.timer -= dt;
+
+                // Antigravità
+                b.aggregato.body.applyForce(
+                    new BABYLON.Vector3(0, -PARAM.bollaAntigravita * 9.81 * 0.05, 0),
+                    b.mesh.position
+                );
+
+                if (b.timer <= 0) {
+                    // Scoppia
+                    bolleAttive.splice(i, 1);
+                    b.aggregato.dispose();
+                    b.mesh.dispose();
+                }
+            }
+        }
+
+        // ========================================
+        // Avvia!
+        // ========================================
+
+        inizializza();
+    </script>
+</body>
+
+</html>
