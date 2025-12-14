@@ -1,0 +1,309 @@
+{
+    "nome": "Livello 1 - Tutorial",
+    "bioma": "caverna_primordiale",
+    "descrizione": "Benvenuto nella Caverna Primordiale! Impara le basi del combattimento.",
+    "giocatore": {
+        "posizione": [
+            0,
+            2,
+            0
+        ],
+        "direzione": [
+            0,
+            0,
+            1
+        ]
+    },
+    "ambiente": {
+        "gravita": [
+            0,
+            -9.81,
+            0
+        ],
+        "luceAmbiente": 0.7,
+        "luceDirezionale": 0.5,
+        "nebbia": {
+            "abilitata": true,
+            "densita": 0.02,
+            "colore": [
+                0.15,
+                0.12,
+                0.1
+            ]
+        }
+    },
+    "geometria": {
+        "pavimento": {
+            "tipo": "piano",
+            "dimensioni": [
+                40,
+                40
+            ],
+            "posizione": [
+                0,
+                0,
+                0
+            ],
+            "materiale": "rocciaScura"
+        },
+        "piattaforme": [
+            {
+                "tipo": "box",
+                "dimensioni": [
+                    4,
+                    0.5,
+                    4
+                ],
+                "posizione": [
+                    8,
+                    1.5,
+                    0
+                ],
+                "materiale": "rocciaMedio"
+            },
+            {
+                "tipo": "box",
+                "dimensioni": [
+                    4,
+                    0.5,
+                    4
+                ],
+                "posizione": [
+                    -8,
+                    1.5,
+                    0
+                ],
+                "materiale": "rocciaMedio"
+            },
+            {
+                "tipo": "box",
+                "dimensioni": [
+                    6,
+                    0.5,
+                    6
+                ],
+                "posizione": [
+                    0,
+                    3,
+                    10
+                ],
+                "materiale": "rocciaMedio"
+            },
+            {
+                "tipo": "box",
+                "dimensioni": [
+                    3,
+                    0.5,
+                    3
+                ],
+                "posizione": [
+                    5,
+                    4.5,
+                    8
+                ],
+                "materiale": "rocciaMedio"
+            },
+            {
+                "tipo": "box",
+                "dimensioni": [
+                    3,
+                    0.5,
+                    3
+                ],
+                "posizione": [
+                    -5,
+                    4.5,
+                    8
+                ],
+                "materiale": "rocciaMedio"
+            }
+        ],
+        "muri": [
+            {
+                "tipo": "box",
+                "dimensioni": [
+                    1,
+                    5,
+                    42
+                ],
+                "posizione": [
+                    -21,
+                    2.5,
+                    0
+                ],
+                "materiale": "rocciaScura"
+            },
+            {
+                "tipo": "box",
+                "dimensioni": [
+                    1,
+                    5,
+                    42
+                ],
+                "posizione": [
+                    21,
+                    2.5,
+                    0
+                ],
+                "materiale": "rocciaScura"
+            },
+            {
+                "tipo": "box",
+                "dimensioni": [
+                    42,
+                    5,
+                    1
+                ],
+                "posizione": [
+                    0,
+                    2.5,
+                    -21
+                ],
+                "materiale": "rocciaScura"
+            },
+            {
+                "tipo": "box",
+                "dimensioni": [
+                    42,
+                    5,
+                    1
+                ],
+                "posizione": [
+                    0,
+                    2.5,
+                    21
+                ],
+                "materiale": "rocciaScura"
+            }
+        ]
+    },
+    "nemici": [
+        {
+            "tipo": "ZenRobot",
+            "posizione": [
+                10,
+                1,
+                5
+            ],
+            "opzioni": {
+                "pattuglia": true,
+                "rangoPatuglia": 6
+            }
+        },
+        {
+            "tipo": "ZenRobot",
+            "posizione": [
+                -10,
+                1,
+                5
+            ],
+            "opzioni": {
+                "pattuglia": true,
+                "rangoPatuglia": 6
+            }
+        },
+        {
+            "tipo": "ZenRobot",
+            "posizione": [
+                0,
+                1,
+                15
+            ],
+            "opzioni": {
+                "pattuglia": true,
+                "rangoPatuglia": 8
+            }
+        }
+    ],
+    "collezionabili": [
+        {
+            "tipo": "oro",
+            "posizione": [
+                5,
+                1,
+                0
+            ],
+            "valore": 10
+        },
+        {
+            "tipo": "oro",
+            "posizione": [
+                -5,
+                1,
+                0
+            ],
+            "valore": 10
+        },
+        {
+            "tipo": "oro",
+            "posizione": [
+                0,
+                4,
+                10
+            ],
+            "valore": 25
+        },
+        {
+            "tipo": "frutta",
+            "posizione": [
+                8,
+                2.5,
+                0
+            ],
+            "tipoFrutta": "mela"
+        }
+    ],
+    "zone": [
+        {
+            "tipo": "spawnGiocatore",
+            "posizione": [
+                0,
+                2,
+                -15
+            ],
+            "dimensioni": [
+                4,
+                4,
+                4
+            ]
+        },
+        {
+            "tipo": "uscita",
+            "posizione": [
+                0,
+                2,
+                18
+            ],
+            "dimensioni": [
+                6,
+                4,
+                2
+            ],
+            "prossimoLivello": 2
+        }
+    ],
+    "obiettivi": {
+        "principale": "Sconfiggi tutti i nemici",
+        "bonus": [
+            "Raccogli tutto l'oro",
+            "Non subire danni"
+        ]
+    },
+    "tutorial": [
+        {
+            "trigger": "inizio",
+            "messaggio": "Usa il joystick per muoverti!",
+            "durata": 3
+        },
+        {
+            "trigger": "primoNemico",
+            "messaggio": "Premi il pulsante blu per sparare bolle!",
+            "durata": 3
+        },
+        {
+            "trigger": "primaUccisione",
+            "messaggio": "Ottimo! Raccogli l'oro lasciato dai nemici!",
+            "durata": 3
+        }
+    ]
+}
