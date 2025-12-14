@@ -95,13 +95,27 @@ export class GestoreNemici {
      * Spawna più nemici in posizioni specificate
      */
     async spawnaNemici(listaSpawn) {
-        const promesse = listaSpawn.map(spawn =>
-            this.creaNemico(
+        const promesse = listaSpawn.map(spawn => {
+            // Supporta diversi formati di posizione
+            let posizione;
+            if (spawn.posizione instanceof BABYLON.Vector3) {
+                posizione = spawn.posizione;
+            } else if (Array.isArray(spawn.posizione)) {
+                posizione = new BABYLON.Vector3(spawn.posizione[0], spawn.posizione[1], spawn.posizione[2]);
+            } else if (spawn.posizione && typeof spawn.posizione === 'object') {
+                posizione = new BABYLON.Vector3(spawn.posizione.x || 0, spawn.posizione.y || 0, spawn.posizione.z || 0);
+            } else if (spawn.x !== undefined) {
+                posizione = new BABYLON.Vector3(spawn.x, spawn.y || 0, spawn.z || 0);
+            } else {
+                posizione = new BABYLON.Vector3(0, 1, 0);
+            }
+
+            return this.creaNemico(
                 spawn.tipo || TipiNemico.ZEN_ROBOT,
-                new BABYLON.Vector3(spawn.x, spawn.y, spawn.z),
+                posizione,
                 spawn.opzioni || {}
-            )
-        );
+            );
+        });
 
         return Promise.all(promesse);
     }
@@ -262,7 +276,7 @@ export class GestoreNemici {
     /**
      * Pulisci tutti i nemici
      */
-    pulisciTutto() {
+    pulisciTutti() {
         for (const nemico of this.nemiciAttivi) {
             nemico.distruggi();
         }
@@ -274,5 +288,10 @@ export class GestoreNemici {
             }
         }
         this.poolNemici.clear();
+    }
+
+    // Alias
+    pulisciTutto() {
+        this.pulisciTutti();
     }
 }

@@ -633,7 +633,7 @@ export class GiocoBubbleAttack {
         // UI
         this.gestoreUI?.mostraVittoria(
             ricompense?.oro || 0,
-            ricompenses?.xp || 0,
+            ricompense?.xp || 0,
             stelle
         );
     }
