@@ -120,6 +120,150 @@ export class GestoreUI {
                 </div>
             </div>
             
+            <!-- Schermata Negozio -->
+            <div id="schermata-negozio" class="menu-overlay nascosto">
+                <div class="negozio-box">
+                    <div class="negozio-header">
+                        <h2>🛒 NEGOZIO</h2>
+                        <div class="negozio-valute">
+                            <span class="valuta-oro">💰 <span id="negozio-oro">0</span></span>
+                            <span class="valuta-gemme">💎 <span id="negozio-gemme">0</span></span>
+                        </div>
+                        <button id="btn-chiudi-negozio" class="btn-chiudi-x">✖</button>
+                    </div>
+                    
+                    <div class="negozio-tabs">
+                        <button class="tab-btn attivo" data-categoria="armi">⚔️ Armi</button>
+                        <button class="tab-btn" data-categoria="potenziamenti">💪 Potenziamenti</button>
+                        <button class="tab-btn" data-categoria="accessori">👓 Accessori</button>
+                        <button class="tab-btn" data-categoria="pacchetti">📦 Pacchetti</button>
+                    </div>
+                    
+                    <div id="negozio-griglia" class="negozio-griglia">
+                        <!-- Generato dinamicamente -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Schermata Upgrade Armi -->
+            <div id="schermata-upgrade" class="menu-overlay nascosto">
+                <div class="upgrade-box">
+                    <div class="upgrade-header">
+                        <h2>⚔️ POTENZIA ARMI</h2>
+                        <div class="negozio-valute">
+                            <span class="valuta-oro">💰 <span id="upgrade-oro">0</span></span>
+                        </div>
+                        <button id="btn-chiudi-upgrade" class="btn-chiudi-x">✖</button>
+                    </div>
+                    
+                    <div class="upgrade-lista">
+                        <div id="upgrade-armi-lista" class="armi-lista">
+                            <!-- Generato dinamicamente -->
+                        </div>
+                        
+                        <div id="upgrade-dettagli" class="upgrade-dettagli">
+                            <div class="arma-icona-grande" id="upgrade-icona">⚡</div>
+                            <h3 id="upgrade-nome-arma">Bolla Fulmine</h3>
+                            <p id="upgrade-descrizione">Descrizione arma</p>
+                            
+                            <div class="upgrade-livelli">
+                                <div class="livello-punto attivo">Lv.1</div>
+                                <div class="livello-linea"></div>
+                                <div class="livello-punto">Lv.2</div>
+                                <div class="livello-linea"></div>
+                                <div class="livello-punto">Lv.3</div>
+                            </div>
+                            
+                            <div id="upgrade-stats" class="upgrade-stats">
+                                <!-- Stats generate dinamicamente -->
+                            </div>
+                            
+                            <button id="btn-potenzia" class="btn-menu primario">
+                                ⬆️ Potenzia (1000 💰)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Schermata Impostazioni -->
+            <div id="schermata-impostazioni" class="menu-overlay nascosto">
+                <div class="menu-box grande">
+                    <h2>⚙️ IMPOSTAZIONI</h2>
+                    
+                    <div class="impostazione-riga">
+                        <span>🎵 Musica</span>
+                        <input type="range" id="slider-musica" min="0" max="100" value="80" class="slider">
+                        <span id="val-musica">80%</span>
+                    </div>
+                    
+                    <div class="impostazione-riga">
+                        <span>🔊 Effetti</span>
+                        <input type="range" id="slider-effetti" min="0" max="100" value="80" class="slider">
+                        <span id="val-effetti">80%</span>
+                    </div>
+                    
+                    <div class="impostazione-riga">
+                        <span>📳 Vibrazioni</span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-vibrazioni" checked>
+                            <span class="switch-slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="impostazione-riga">
+                        <span>🎮 Sensibilità Touch</span>
+                        <input type="range" id="slider-sensibilita" min="50" max="150" value="100" class="slider">
+                        <span id="val-sensibilita">100%</span>
+                    </div>
+                    
+                    <button id="btn-reset-impostazioni" class="btn-menu">🔄 Ripristina Default</button>
+                    <button id="btn-chiudi-impostazioni" class="btn-menu primario">✓ Salva e Chiudi</button>
+                </div>
+            </div>
+            
+            <!-- Schermata Statistiche -->
+            <div id="schermata-statistiche" class="menu-overlay nascosto">
+                <div class="menu-box grande">
+                    <h2>📊 STATISTICHE</h2>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-icona">🎮</span>
+                            <span class="stat-valore" id="stat-livello-max">1</span>
+                            <span class="stat-nome">Livello Massimo</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icona">💀</span>
+                            <span class="stat-valore" id="stat-nemici">0</span>
+                            <span class="stat-nome">Nemici Sconfitti</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icona">🔵</span>
+                            <span class="stat-valore" id="stat-bolle">0</span>
+                            <span class="stat-nome">Bolle Sparate</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icona">⏱️</span>
+                            <span class="stat-valore" id="stat-tempo">0h</span>
+                            <span class="stat-nome">Tempo di Gioco</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icona">💰</span>
+                            <span class="stat-valore" id="stat-oro-totale">0</span>
+                            <span class="stat-nome">Oro Raccolto</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icona">⭐</span>
+                            <span class="stat-valore" id="stat-stelle">0</span>
+                            <span class="stat-nome">Stelle Totali</span>
+                        </div>
+                    </div>
+                    
+                    <button id="btn-chiudi-statistiche" class="btn-menu primario">✓ Chiudi</button>
+                </div>
+            </div>
+            
             <!-- Toast Notifiche -->
             <div id="toast-container"></div>
         `;
@@ -167,6 +311,34 @@ export class GestoreUI {
         document.getElementById('btn-esci')?.addEventListener('click', () => {
             this.chiudiPausa();
             this.apriMenuPrincipale();
+        });
+
+        // Negozio (da menu pausa e principale)
+        document.getElementById('btn-negozio')?.addEventListener('click', () => {
+            this.chiudiPausa();
+            this.apriNegozio();
+        });
+        document.getElementById('btn-negozio-main')?.addEventListener('click', () => {
+            this.chiudiMenuPrincipale();
+            this.apriNegozio();
+        });
+
+        // Impostazioni
+        document.getElementById('btn-impostazioni')?.addEventListener('click', () => {
+            this.chiudiPausa();
+            this.apriImpostazioni();
+        });
+
+        // Statistiche
+        document.getElementById('btn-statistiche')?.addEventListener('click', () => {
+            this.chiudiMenuPrincipale();
+            this.apriStatistiche();
+        });
+
+        // Selettore livelli
+        document.getElementById('btn-livelli')?.addEventListener('click', () => {
+            this.chiudiMenuPrincipale();
+            if (this.onApriLivelli) this.onApriLivelli();
         });
 
         // Menu principale
@@ -512,6 +684,383 @@ export class GestoreUI {
                 color: #4a5568;
                 font-size: 0.9em;
             }
+            
+            /* ==================== NEGOZIO ==================== */
+            .negozio-box {
+                background: linear-gradient(180deg, #2d3748, #1a202c);
+                border-radius: 20px;
+                padding: 25px;
+                width: 90%;
+                max-width: 700px;
+                max-height: 85vh;
+                overflow-y: auto;
+                color: white;
+            }
+            
+            .negozio-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .negozio-header h2 {
+                margin: 0;
+            }
+            
+            .negozio-valute {
+                display: flex;
+                gap: 20px;
+                font-size: 1.2em;
+            }
+            
+            .btn-chiudi-x {
+                background: rgba(255,255,255,0.1);
+                border: none;
+                color: white;
+                font-size: 1.5em;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+            
+            .btn-chiudi-x:hover {
+                background: rgba(239, 68, 68, 0.5);
+            }
+            
+            .negozio-tabs {
+                display: flex;
+                gap: 10px;
+                margin-bottom: 20px;
+                flex-wrap: wrap;
+            }
+            
+            .tab-btn {
+                flex: 1;
+                min-width: 120px;
+                padding: 12px 15px;
+                background: rgba(255,255,255,0.1);
+                border: 2px solid rgba(255,255,255,0.2);
+                border-radius: 10px;
+                color: white;
+                font-size: 0.9em;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+            
+            .tab-btn:hover {
+                background: rgba(255,255,255,0.2);
+            }
+            
+            .tab-btn.attivo {
+                background: linear-gradient(135deg, #4ade80, #22c55e);
+                border-color: transparent;
+            }
+            
+            .negozio-griglia {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .oggetto-card {
+                background: rgba(255,255,255,0.05);
+                border: 2px solid rgba(255,255,255,0.1);
+                border-radius: 15px;
+                padding: 15px;
+                text-align: center;
+                transition: all 0.2s;
+            }
+            
+            .oggetto-card:hover {
+                background: rgba(255,255,255,0.1);
+                transform: translateY(-3px);
+            }
+            
+            .oggetto-card.posseduto {
+                border-color: #22c55e;
+                opacity: 0.7;
+            }
+            
+            .oggetto-card.bloccato {
+                opacity: 0.5;
+            }
+            
+            .oggetto-icona {
+                font-size: 2.5em;
+                display: block;
+                margin-bottom: 10px;
+            }
+            
+            .oggetto-nome {
+                font-weight: bold;
+                font-size: 0.95em;
+                margin-bottom: 5px;
+            }
+            
+            .oggetto-prezzo {
+                font-size: 1.1em;
+                color: #ffd700;
+                margin-bottom: 10px;
+            }
+            
+            .oggetto-prezzo.gemme {
+                color: #00bfff;
+            }
+            
+            .btn-acquista {
+                width: 100%;
+                padding: 8px;
+                background: linear-gradient(135deg, #4ade80, #22c55e);
+                border: none;
+                border-radius: 8px;
+                color: white;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+            
+            .btn-acquista:hover {
+                background: linear-gradient(135deg, #22c55e, #16a34a);
+            }
+            
+            .btn-acquista:disabled {
+                background: #4a5568;
+                cursor: not-allowed;
+            }
+            
+            /* ==================== UPGRADE ARMI ==================== */
+            .upgrade-box {
+                background: linear-gradient(180deg, #2d3748, #1a202c);
+                border-radius: 20px;
+                padding: 25px;
+                width: 90%;
+                max-width: 800px;
+                max-height: 85vh;
+                overflow-y: auto;
+                color: white;
+            }
+            
+            .upgrade-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .upgrade-lista {
+                display: flex;
+                gap: 20px;
+            }
+            
+            .armi-lista {
+                width: 200px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .arma-item {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 12px;
+                background: rgba(255,255,255,0.05);
+                border: 2px solid rgba(255,255,255,0.1);
+                border-radius: 10px;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+            
+            .arma-item:hover, .arma-item.selezionato {
+                background: rgba(255,255,255,0.15);
+                border-color: #4ade80;
+            }
+            
+            .arma-item .icona {
+                font-size: 1.5em;
+            }
+            
+            .upgrade-dettagli {
+                flex: 1;
+                background: rgba(255,255,255,0.05);
+                border-radius: 15px;
+                padding: 25px;
+                text-align: center;
+            }
+            
+            .arma-icona-grande {
+                font-size: 4em;
+                margin-bottom: 15px;
+            }
+            
+            .upgrade-livelli {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                margin: 20px 0;
+            }
+            
+            .livello-punto {
+                padding: 8px 15px;
+                background: rgba(255,255,255,0.1);
+                border-radius: 20px;
+                font-size: 0.9em;
+            }
+            
+            .livello-punto.attivo {
+                background: linear-gradient(135deg, #4ade80, #22c55e);
+            }
+            
+            .livello-punto.corrente {
+                border: 2px solid #ffd700;
+            }
+            
+            .livello-linea {
+                width: 30px;
+                height: 3px;
+                background: rgba(255,255,255,0.2);
+            }
+            
+            .upgrade-stats {
+                text-align: left;
+                padding: 15px;
+                background: rgba(0,0,0,0.2);
+                border-radius: 10px;
+                margin-bottom: 20px;
+            }
+            
+            .stat-row {
+                display: flex;
+                justify-content: space-between;
+                padding: 5px 0;
+            }
+            
+            /* ==================== IMPOSTAZIONI ==================== */
+            .impostazione-riga {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 15px 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .slider {
+                -webkit-appearance: none;
+                width: 150px;
+                height: 8px;
+                border-radius: 4px;
+                background: rgba(255,255,255,0.2);
+                outline: none;
+            }
+            
+            .slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: #4ade80;
+                cursor: pointer;
+            }
+            
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 50px;
+                height: 26px;
+            }
+            
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+            
+            .switch-slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(255,255,255,0.2);
+                border-radius: 26px;
+                transition: 0.3s;
+            }
+            
+            .switch-slider:before {
+                content: "";
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                left: 3px;
+                bottom: 3px;
+                background: white;
+                border-radius: 50%;
+                transition: 0.3s;
+            }
+            
+            .switch input:checked + .switch-slider {
+                background: #4ade80;
+            }
+            
+            .switch input:checked + .switch-slider:before {
+                transform: translateX(24px);
+            }
+            
+            /* ==================== STATISTICHE ==================== */
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+                margin-bottom: 25px;
+            }
+            
+            .stat-card {
+                background: rgba(255,255,255,0.05);
+                border-radius: 15px;
+                padding: 20px 15px;
+                text-align: center;
+            }
+            
+            .stat-icona {
+                font-size: 2em;
+                display: block;
+                margin-bottom: 10px;
+            }
+            
+            .stat-valore {
+                font-size: 1.8em;
+                font-weight: bold;
+                display: block;
+                color: #4ade80;
+            }
+            
+            .stat-nome {
+                font-size: 0.85em;
+                color: #a0aec0;
+            }
+            
+            @media (max-width: 600px) {
+                .stats-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                .upgrade-lista {
+                    flex-direction: column;
+                }
+                .armi-lista {
+                    width: 100%;
+                    flex-direction: row;
+                    overflow-x: auto;
+                }
+            }
         `;
 
         document.head.appendChild(stili);
@@ -644,5 +1193,331 @@ export class GestoreUI {
         if (this.elementi.container) {
             this.elementi.container.remove();
         }
+    }
+
+    // ==================== NEGOZIO ====================
+
+    /**
+     * Imposta riferimento al negozio
+     */
+    setNegozio(negozio) {
+        this.negozio = negozio;
+    }
+
+    /**
+     * Apre la schermata negozio
+     */
+    apriNegozio(categoria = 'armi') {
+        const schermata = document.getElementById('schermata-negozio');
+        schermata.classList.remove('nascosto');
+
+        // Aggiorna valute
+        this.aggiornaValuteNegozio();
+
+        // Imposta categoria e popola
+        this.cambiaCategoriaNegozo(categoria);
+
+        // Collega eventi tab
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.onclick = () => this.cambiaCategoriaNegozo(btn.dataset.categoria);
+        });
+
+        // Pulsante chiudi
+        document.getElementById('btn-chiudi-negozio').onclick = () => this.chiudiNegozio();
+
+        console.log('🛒 Negozio aperto');
+    }
+
+    chiudiNegozio() {
+        document.getElementById('schermata-negozio').classList.add('nascosto');
+    }
+
+    aggiornaValuteNegozio() {
+        if (!this.gestoreEconomia) return;
+        document.getElementById('negozio-oro').textContent =
+            this.gestoreEconomia.valute.oro.toLocaleString();
+        document.getElementById('negozio-gemme').textContent =
+            this.gestoreEconomia.valute.gemme.toLocaleString();
+    }
+
+    cambiaCategoriaNegozo(categoria) {
+        // Aggiorna tab attivo
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.toggle('attivo', btn.dataset.categoria === categoria);
+        });
+
+        // Popola griglia
+        this.popolaGrigliaNegozio(categoria);
+    }
+
+    popolaGrigliaNegozio(categoria) {
+        const griglia = document.getElementById('negozio-griglia');
+        griglia.innerHTML = '';
+
+        if (!this.negozio) {
+            griglia.innerHTML = '<p style="color:#a0aec0">Negozio non disponibile</p>';
+            return;
+        }
+
+        this.negozio.categoriaCorrente = categoria;
+        const oggetti = this.negozio.ottieniOggettiCategoria();
+
+        oggetti.forEach(ogg => {
+            const card = document.createElement('div');
+            card.className = 'oggetto-card';
+            if (ogg.posseduto) card.classList.add('posseduto');
+            if (!ogg.acquistabile && !ogg.posseduto) card.classList.add('bloccato');
+
+            const prezzoClasse = ogg.valuta === 'gemme' ? 'gemme' : '';
+            const simboloValuta = ogg.valuta === 'gemme' ? '💎' : '💰';
+
+            card.innerHTML = `
+                <span class="oggetto-icona">${ogg.icona}</span>
+                <div class="oggetto-nome">${ogg.nome}</div>
+                <div class="oggetto-prezzo ${prezzoClasse}">${simboloValuta} ${ogg.prezzo}</div>
+                ${ogg.posseduto
+                    ? '<span style="color:#4ade80">✓ Posseduto</span>'
+                    : ogg.motivoBlocco
+                        ? `<span style="color:#ef4444;font-size:0.8em">${ogg.motivoBlocco}</span>`
+                        : `<button class="btn-acquista" data-id="${ogg.id}">Acquista</button>`
+                }
+            `;
+
+            griglia.appendChild(card);
+        });
+
+        // Collega eventi acquisto
+        griglia.querySelectorAll('.btn-acquista').forEach(btn => {
+            btn.onclick = () => this.eseguiAcquisto(btn.dataset.id);
+        });
+    }
+
+    eseguiAcquisto(idOggetto) {
+        if (!this.negozio) return;
+
+        const risultato = this.negozio.acquista(idOggetto);
+
+        if (risultato.successo) {
+            this.mostraToast(`✓ ${risultato.oggetto.nome} acquistato!`, 'successo');
+            this.aggiornaValuteNegozio();
+            this.popolaGrigliaNegozio(this.negozio.categoriaCorrente);
+            this.aggiornaHUD();
+        } else {
+            this.mostraToast(`✗ ${risultato.errore}`, 'errore');
+        }
+    }
+
+    // ==================== UPGRADE ARMI ====================
+
+    /**
+     * Imposta riferimento all'arsenale
+     */
+    setArsenale(arsenale) {
+        this.arsenale = arsenale;
+    }
+
+    apriUpgradeArmi() {
+        const schermata = document.getElementById('schermata-upgrade');
+        schermata.classList.remove('nascosto');
+
+        this.aggiornaOroUpgrade();
+        this.popolaListaArmi();
+
+        document.getElementById('btn-chiudi-upgrade').onclick = () => this.chiudiUpgradeArmi();
+
+        console.log('⚔️ Upgrade armi aperto');
+    }
+
+    chiudiUpgradeArmi() {
+        document.getElementById('schermata-upgrade').classList.add('nascosto');
+    }
+
+    aggiornaOroUpgrade() {
+        if (!this.gestoreEconomia) return;
+        document.getElementById('upgrade-oro').textContent =
+            this.gestoreEconomia.valute.oro.toLocaleString();
+    }
+
+    popolaListaArmi() {
+        const lista = document.getElementById('upgrade-armi-lista');
+        lista.innerHTML = '';
+
+        if (!this.gestoreEconomia) return;
+
+        const armiInfo = {
+            'BollaFulmine': { icona: '⚡', nome: 'Bolla Fulmine' },
+            'OndaMareale': { icona: '🌊', nome: 'Onda Mareale' },
+            'TrivellaPerforante': { icona: '🔧', nome: 'Trivella' },
+            'TorrenteNapalm': { icona: '🔥', nome: 'Torrente Napalm' },
+            'AncoraGravitazionale': { icona: '⚓', nome: 'Ancora Grav.' },
+            'CongelaTempo': { icona: '⏱️', nome: 'Congela Tempo' },
+            'VuotoSingolarita': { icona: '🌀', nome: 'Singolarità' },
+            'DardoElio': { icona: '🎈', nome: 'Dardo Elio' },
+            'CometaRimbalzante': { icona: '☄️', nome: 'Cometa' }
+        };
+
+        Object.entries(this.gestoreEconomia.livelliArmi).forEach(([id, livello]) => {
+            if (livello > 0) {
+                const info = armiInfo[id] || { icona: '❓', nome: id };
+                const item = document.createElement('div');
+                item.className = 'arma-item';
+                item.innerHTML = `
+                    <span class="icona">${info.icona}</span>
+                    <span>${info.nome} Lv.${livello}</span>
+                `;
+                item.onclick = () => this.selezionaArmaUpgrade(id, info, livello);
+                lista.appendChild(item);
+            }
+        });
+
+        if (lista.children.length === 0) {
+            lista.innerHTML = '<p style="color:#a0aec0;padding:20px">Nessuna arma sbloccata</p>';
+        }
+    }
+
+    selezionaArmaUpgrade(id, info, livelloCorrente) {
+        document.getElementById('upgrade-icona').textContent = info.icona;
+        document.getElementById('upgrade-nome-arma').textContent = info.nome;
+        document.getElementById('upgrade-descrizione').textContent = `Livello attuale: ${livelloCorrente}/3`;
+
+        // Aggiorna indicatori livello
+        const livelli = document.querySelectorAll('.livello-punto');
+        livelli.forEach((el, i) => {
+            el.classList.toggle('attivo', i < livelloCorrente);
+            el.classList.toggle('corrente', i === livelloCorrente - 1);
+        });
+
+        // Pulsante potenzia
+        const btn = document.getElementById('btn-potenzia');
+        if (livelloCorrente >= 3) {
+            btn.textContent = '✓ Livello Massimo';
+            btn.disabled = true;
+        } else {
+            const costo = [500, 1500, 3000][livelloCorrente];
+            btn.textContent = `⬆️ Potenzia (${costo} 💰)`;
+            btn.disabled = false;
+            btn.onclick = () => this.potenziaArma(id, costo);
+        }
+
+        // Evidenzia selezione
+        document.querySelectorAll('.arma-item').forEach(el => el.classList.remove('selezionato'));
+        event.currentTarget.classList.add('selezionato');
+    }
+
+    potenziaArma(idArma, costo) {
+        if (!this.gestoreEconomia) return;
+
+        if (this.gestoreEconomia.valute.oro >= costo) {
+            this.gestoreEconomia.rimuoviOro(costo);
+            this.gestoreEconomia.livelliArmi[idArma]++;
+            this.mostraToast('⬆️ Arma potenziata!', 'successo');
+            this.aggiornaOroUpgrade();
+            this.popolaListaArmi();
+            this.aggiornaHUD();
+        } else {
+            this.mostraToast('✗ Oro insufficiente!', 'errore');
+        }
+    }
+
+    // ==================== IMPOSTAZIONI ====================
+
+    apriImpostazioni() {
+        const schermata = document.getElementById('schermata-impostazioni');
+        schermata.classList.remove('nascosto');
+
+        // Carica valori salvati
+        const impostazioni = JSON.parse(localStorage.getItem('bubble-attack-settings') || '{}');
+
+        document.getElementById('slider-musica').value = impostazioni.musica ?? 80;
+        document.getElementById('slider-effetti').value = impostazioni.effetti ?? 80;
+        document.getElementById('slider-sensibilita').value = impostazioni.sensibilita ?? 100;
+        document.getElementById('toggle-vibrazioni').checked = impostazioni.vibrazioni ?? true;
+
+        this.aggiornaValoriSlider();
+
+        // Eventi
+        document.getElementById('slider-musica').oninput = () => this.aggiornaValoriSlider();
+        document.getElementById('slider-effetti').oninput = () => this.aggiornaValoriSlider();
+        document.getElementById('slider-sensibilita').oninput = () => this.aggiornaValoriSlider();
+
+        document.getElementById('btn-reset-impostazioni').onclick = () => this.resetImpostazioni();
+        document.getElementById('btn-chiudi-impostazioni').onclick = () => this.salvaEChiudiImpostazioni();
+
+        console.log('⚙️ Impostazioni aperte');
+    }
+
+    aggiornaValoriSlider() {
+        document.getElementById('val-musica').textContent =
+            document.getElementById('slider-musica').value + '%';
+        document.getElementById('val-effetti').textContent =
+            document.getElementById('slider-effetti').value + '%';
+        document.getElementById('val-sensibilita').textContent =
+            document.getElementById('slider-sensibilita').value + '%';
+    }
+
+    resetImpostazioni() {
+        document.getElementById('slider-musica').value = 80;
+        document.getElementById('slider-effetti').value = 80;
+        document.getElementById('slider-sensibilita').value = 100;
+        document.getElementById('toggle-vibrazioni').checked = true;
+        this.aggiornaValoriSlider();
+        this.mostraToast('🔄 Impostazioni ripristinate', 'info');
+    }
+
+    salvaEChiudiImpostazioni() {
+        const impostazioni = {
+            musica: parseInt(document.getElementById('slider-musica').value),
+            effetti: parseInt(document.getElementById('slider-effetti').value),
+            sensibilita: parseInt(document.getElementById('slider-sensibilita').value),
+            vibrazioni: document.getElementById('toggle-vibrazioni').checked
+        };
+
+        localStorage.setItem('bubble-attack-settings', JSON.stringify(impostazioni));
+        document.getElementById('schermata-impostazioni').classList.add('nascosto');
+
+        // Applica impostazioni audio se disponibile
+        if (window.gioco?.gestoreAudio) {
+            window.gioco.gestoreAudio.impostaVolumeMusica(impostazioni.musica / 100);
+            window.gioco.gestoreAudio.impostaVolumeEffetti(impostazioni.effetti / 100);
+        }
+
+        this.mostraToast('✓ Impostazioni salvate', 'successo');
+    }
+
+    // ==================== STATISTICHE ====================
+
+    apriStatistiche() {
+        const schermata = document.getElementById('schermata-statistiche');
+        schermata.classList.remove('nascosto');
+
+        if (this.gestoreEconomia) {
+            const eco = this.gestoreEconomia;
+            const stats = eco.statistiche || {};
+
+            document.getElementById('stat-livello-max').textContent =
+                eco.progressione?.livelloMaxRaggiunto || 1;
+            document.getElementById('stat-nemici').textContent =
+                (stats.nemiciSconfitti || 0).toLocaleString();
+            document.getElementById('stat-bolle').textContent =
+                (stats.bolleSparate || 0).toLocaleString();
+            document.getElementById('stat-oro-totale').textContent =
+                (stats.oroTotaleRaccolto || 0).toLocaleString();
+
+            // Tempo di gioco
+            const minuti = Math.floor((stats.tempoGioco || 0) / 60);
+            const ore = Math.floor(minuti / 60);
+            document.getElementById('stat-tempo').textContent =
+                ore > 0 ? `${ore}h ${minuti % 60}m` : `${minuti}m`;
+
+            // Stelle (simulazione)
+            document.getElementById('stat-stelle').textContent =
+                ((eco.progressione?.livelloMaxRaggiunto || 1) - 1) * 3;
+        }
+
+        document.getElementById('btn-chiudi-statistiche').onclick = () => {
+            schermata.classList.add('nascosto');
+        };
+
+        console.log('📊 Statistiche aperte');
     }
 }
